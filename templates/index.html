@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %} To do {% endblock title %}
+
+
+
+{% block header %}
+<div class="container">
+    <h1 class="display-1">To do App</h1>
+</div>
+{% endblock header %}
+
+{% block content %}
+
+<div class="container container-lg" style="padding-bottom:50px;">
+
+    <form action="/add" method="post" class="lead">
+
+        <label for="title">Enter your New Task</label>
+        <input type="text" name="title" pla ceholder="...">
+        <br>
+
+        <div style="padding-left: 2%;">
+            <button type="submit" class="btn btn-outline-success">Add New Task</button>
+
+        </div>
+    </form>
+</div>
+</div>
+
+<div class="container container-lg">
+    {% for task in tasks %}
+    <p class="lead">{{ task.id }}º {{ task.task }}
+        <br>
+        {% if task.status %}
+        <span class="btn">Completed</span>
+        {% else %}
+        <span class="btn">Not Completed</span>
+        {% endif %}
+        <a href="/update/{{ task.id }}" class="btn btn-outline-success">Update</a>
+        <a href="/delete/{{ task.id }}" class="btn btn-outline-danger">Delete</a>
+    </p>
+    {% endfor %}
+
+</div>
+{% endblock content %}
